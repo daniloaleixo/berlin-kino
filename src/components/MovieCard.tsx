@@ -1,15 +1,9 @@
 
 import { Bookmark } from 'lucide-react';
+import { Movie } from '../types/movies.types';
 
 export const MovieCard = ({ movie }: {
-  movie: {
-    id: number;
-    title: string;
-    time: string;
-    cinema: string;
-    language: string;
-    type: string;
-  }
+  movie: Movie;
 }) => (
   <div className="bg-gray-900 border border-gray-700 rounded-lg p-6 mb-4 hover:border-red-400 hover:-translate-y-1 transition-all duration-300">
     <div className="flex items-center">

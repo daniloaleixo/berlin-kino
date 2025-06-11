@@ -1,9 +1,14 @@
-import { Filter, Menu, Search, X } from 'lucide-react';
+import { Filter, Menu, X } from 'lucide-react';
 import { useState } from 'react';
-import { MovieCard } from './components/MovieCard';
+import { MainTitle } from './components/MainTitle';
+import { MovieList } from './components/MovieList';
+import { Navigation } from './components/Navigation';
+import { SearchComponent } from './components/Search';
+import { Movie } from './types/movies.types';
+import { DateHeader } from './components/DateHeader';
 
 // Mock data
-const mockMovies = [
+const mockMovies: Movie[] = [
   {
     id: 1,
     time: '16:30',
@@ -52,25 +57,10 @@ function CinemaWebsite() {
       <header className="bg-black border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
-            {/* Search */}
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-red-400" size={20} />
-              <input
-                type="text"
-                placeholder="SEARCH FILM/CINEMA"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="bg-transparent border border-red-400 rounded px-10 py-2 text-white placeholder-gray-400 text-sm uppercase tracking-wide focus:outline-none focus:border-red-400"
-              />
-            </div>
+          <SearchComponent searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
             
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-4">
-              <button className="border border-red-400 text-red-400 px-4 py-2 rounded hover:bg-red-400 hover:text-black transition-colors">
-                MY FILMS
-              </button>
-              <span className="text-sm">DE / EN</span>
-            </div>
+            <Navigation />
 
             {/* Mobile Menu Button */}
             <button 
@@ -94,16 +84,7 @@ function CinemaWebsite() {
       </header>
 
       {/* Main Title Section */}
-      <div className="text-center py-16">
-        <p className="text-gray-400 text-sm uppercase tracking-[3px] mb-6">
-          THE PROGRAMME OF CINEMAS IN BERLIN, BRANDENBURG AND BEYOND
-        </p>
-        
-        <div className="text-8xl md:text-9xl font-light italic">
-          <div className="text-white font-serif">Berlin</div>
-          <div className="text-red-400 font-serif -mt-4">Kino</div>
-        </div>
-      </div>
+      <MainTitle />
 
       {/* Navigation Tabs and Filters */}
       <div className="max-w-7xl mx-auto px-4">
@@ -154,18 +135,11 @@ function CinemaWebsite() {
         </div>
 
         {/* Date Header */}
-        <div className="bg-red-400 text-black py-4 px-6 mb-8 text-center">
-          <h2 className="text-xl font-medium uppercase tracking-wide">
-            WEDNESDAY, JUNE 11, 2025
-          </h2>
-        </div>
+        <DateHeader />
 
         {/* Movie Listings */}
-        <div className="pb-16">
-          {mockMovies.map((movie) => (
-            <MovieCard key={movie.id} movie={movie} />
-          ))}
-        </div>
+        <MovieList movies={mockMovies} />
+
       </div>
 
       {/* Click outside to close menu */}
