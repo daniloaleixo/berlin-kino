@@ -1,5 +1,6 @@
-import { Bookmark, Filter, Menu, Search, X } from 'lucide-react';
+import { Filter, Menu, Search, X } from 'lucide-react';
 import { useState } from 'react';
+import { MovieCard } from './components/MovieCard';
 
 // Mock data
 const mockMovies = [
@@ -45,39 +46,6 @@ function CinemaWebsite() {
   const [showCinemaMenu, setShowCinemaMenu] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
 
-  const MovieCard = ({ movie }: any) => (
-    <div className="bg-gray-900 border border-gray-700 rounded-lg p-6 mb-4 hover:border-yellow-500 hover:-translate-y-1 transition-all duration-300">
-      <div className="flex items-center">
-        <div className="text-4xl font-light text-yellow-500 min-w-[120px] mr-8">
-          {movie.time}
-        </div>
-        
-        <div className="flex-grow">
-          <h3 className="text-2xl font-normal mb-2 text-white">
-            {movie.title}
-          </h3>
-          
-          <div className="flex items-center gap-4 mb-2">
-            <span className="text-yellow-500 text-sm uppercase tracking-wider">
-              {movie.cinema}
-            </span>
-            <span className="text-gray-400 text-sm">
-              {movie.language}
-            </span>
-          </div>
-          
-          <button className="text-yellow-500 text-sm uppercase hover:underline p-0 bg-transparent border-0">
-            {movie.type}
-          </button>
-        </div>
-        
-        <button className="text-gray-400 hover:text-yellow-500 p-2">
-          <Bookmark size={20} />
-        </button>
-      </div>
-    </div>
-  );
-
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Header */}
@@ -86,19 +54,19 @@ function CinemaWebsite() {
           <div className="flex justify-between items-center">
             {/* Search */}
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-yellow-500" size={20} />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-red-400" size={20} />
               <input
                 type="text"
                 placeholder="SEARCH FILM/CINEMA"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="bg-transparent border border-yellow-500 rounded px-10 py-2 text-white placeholder-gray-400 text-sm uppercase tracking-wide focus:outline-none focus:border-yellow-400"
+                className="bg-transparent border border-red-400 rounded px-10 py-2 text-white placeholder-gray-400 text-sm uppercase tracking-wide focus:outline-none focus:border-red-400"
               />
             </div>
             
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-4">
-              <button className="border border-yellow-500 text-yellow-500 px-4 py-2 rounded hover:bg-yellow-500 hover:text-black transition-colors">
+              <button className="border border-red-400 text-red-400 px-4 py-2 rounded hover:bg-red-400 hover:text-black transition-colors">
                 MY FILMS
               </button>
               <span className="text-sm">DE / EN</span>
@@ -106,7 +74,7 @@ function CinemaWebsite() {
 
             {/* Mobile Menu Button */}
             <button 
-              className="md:hidden text-yellow-500"
+              className="md:hidden text-red-400"
               onClick={() => setShowMobileMenu(!showMobileMenu)}
             >
               {showMobileMenu ? <X size={24} /> : <Menu size={24} />}
@@ -116,7 +84,7 @@ function CinemaWebsite() {
           {/* Mobile Menu */}
           {showMobileMenu && (
             <div className="md:hidden mt-4 border-t border-gray-800 pt-4">
-              <button className="block w-full border border-yellow-500 text-yellow-500 px-4 py-2 rounded mb-2">
+              <button className="block w-full border border-red-400 text-red-400 px-4 py-2 rounded mb-2">
                 MY FILMS
               </button>
               <span className="text-sm">DE / EN</span>
@@ -128,12 +96,12 @@ function CinemaWebsite() {
       {/* Main Title Section */}
       <div className="text-center py-16">
         <p className="text-gray-400 text-sm uppercase tracking-[3px] mb-6">
-          THE PROGRAMME OF THE OPEN AIR CINEMAS IN BERLIN, BRANDENBURG AND BEYOND
+          THE PROGRAMME OF CINEMAS IN BERLIN, BRANDENBURG AND BEYOND
         </p>
         
         <div className="text-8xl md:text-9xl font-light italic">
-          <div className="text-white font-serif">OpenAir</div>
-          <div className="text-yellow-500 font-serif -mt-4">Kino</div>
+          <div className="text-white font-serif">Berlin</div>
+          <div className="text-red-400 font-serif -mt-4">Kino</div>
         </div>
       </div>
 
@@ -146,10 +114,10 @@ function CinemaWebsite() {
               <button
                 key={tab}
                 onClick={() => setSelectedTab(index)}
-                className={`px-6 py-3 border border-yellow-500 uppercase font-medium text-sm transition-colors ${
+                className={`px-6 py-3 border border-red-400 uppercase font-medium text-sm transition-colors ${
                   selectedTab === index
-                    ? 'bg-yellow-500 text-black'
-                    : 'bg-transparent text-white hover:bg-yellow-500 hover:text-black'
+                    ? 'bg-red-400 text-black'
+                    : 'bg-transparent text-white hover:bg-red-400 hover:text-black'
                 }`}
               >
                 {tab}
@@ -161,7 +129,7 @@ function CinemaWebsite() {
           <div className="relative">
             <button
               onClick={() => setShowCinemaMenu(!showCinemaMenu)}
-              className="flex items-center gap-2 border border-yellow-500 text-yellow-500 px-4 py-3 uppercase text-sm hover:bg-yellow-500 hover:text-black transition-colors"
+              className="flex items-center gap-2 border border-red-400 text-red-400 px-4 py-3 uppercase text-sm hover:bg-red-400 hover:text-black transition-colors"
             >
               ALL OPEN AIR CINEMAS
               <Filter size={16} />
@@ -186,7 +154,7 @@ function CinemaWebsite() {
         </div>
 
         {/* Date Header */}
-        <div className="bg-yellow-500 text-black py-4 px-6 mb-8 text-center">
+        <div className="bg-red-400 text-black py-4 px-6 mb-8 text-center">
           <h2 className="text-xl font-medium uppercase tracking-wide">
             WEDNESDAY, JUNE 11, 2025
           </h2>
