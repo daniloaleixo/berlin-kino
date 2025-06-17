@@ -6,11 +6,11 @@ import { MainTitle } from './components/MainTitle';
 import { MovieList } from './components/MovieList';
 import { Navigation } from './components/Navigation';
 import { SearchComponent } from './components/Search';
-import useMovies from './hooks/useMovies';
+import useMovies, { Neighborhood } from './hooks/useMovies';
 
 function CinemaWebsite() {
   const { t, i18n } = useTranslation(); // Use the hook
-  
+
   // Helper function to format date as YYYY-MM-DD
   const formatDate = (date: Date): string => {
     return date.toISOString().split('T')[0];
@@ -20,8 +20,9 @@ function CinemaWebsite() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedTab, setSelectedTab] = useState(0);
   const [selectedDate, setSelectedDate] = useState<string>(formatDate(new Date())); // Default to today
-  const [showCinemaMenu, setShowCinemaMenu] = useState(false);
+  const [showNeighborhoodMenu, setShowNeighborhoodMenu] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [selectedNeighborhoods, setSelectedNeighborhoods] = useState<Neighborhood[]>(['Mitte']); // Default to "Mitte" neighborhood
 
   // Use i18n.language instead of a separate state
   const language = i18n.language as "de" | "en";
@@ -30,7 +31,8 @@ function CinemaWebsite() {
   const { movies, loading, error } = useMovies({
     language,
     date: selectedDate,
-    query: searchQuery
+    query: searchQuery,
+    neighborhood: selectedNeighborhoods // Pass the array of neighborhoods
   });
 
   // Function to handle date selection based on tab
@@ -59,6 +61,26 @@ function CinemaWebsite() {
     }
   };
 
+  // Function to toggle neighborhood selection
+  const toggleNeighborhoodSelection = (neighborhood: Neighborhood) => {
+    setSelectedNeighborhoods(prev => {
+      // If it's already selected, remove it
+      if (prev.includes(neighborhood)) {
+        return prev.filter(item => item !== neighborhood);
+      } 
+      // If not selected, add it
+      else {
+        return [...prev, neighborhood];
+      }
+    });
+  };
+
+  // Function to clear all neighborhood selections
+  const clearNeighborhoods = () => {
+    setSelectedNeighborhoods([]);
+    setShowNeighborhoodMenu(false);
+  };
+
   // Function to toggle language
   const toggleLanguage = () => {
     i18n.changeLanguage(language === "en" ? "de" : "en");
@@ -67,10 +89,32 @@ function CinemaWebsite() {
   // Define tabs using translations
   const tabs = [
     t('tabs.today'),
-    t('tabs.tomorrow'), 
-    t('tabs.dayAfterTomorrow'), 
+    t('tabs.tomorrow'),
+    t('tabs.dayAfterTomorrow'),
     t('tabs.date')
   ];
+
+  // Define neighborhoods
+  const neighborhoods: Neighborhood[] = [
+    "Mitte",
+    "Prenzlauer Berg",
+    "Kreuzberg",
+    "Friedrichshain",
+    "Neukölln",
+    "Charlottenburg",
+    "Schöneberg"
+  ];
+
+  // Get a display text for the neighborhood filter button
+  const getNeighborhoodDisplayText = () => {
+    if (selectedNeighborhoods.length === 0) {
+      return t('filters.allNeighborhoods');
+    }
+    if (selectedNeighborhoods.length === 1) {
+      return selectedNeighborhoods[0];
+    }
+    return t('filters.multipleNeighborhoods', { count: selectedNeighborhoods.length });
+  };
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -131,7 +175,7 @@ function CinemaWebsite() {
             ))}
           </div>
 
-          {/* Language Toggle and Cinema Filter */}
+          {/* Language Toggle and Neighborhood Filter */}
           <div className="flex items-center gap-4">
             {/* Language Toggle */}
             <button
@@ -141,17 +185,49 @@ function CinemaWebsite() {
               {language.toUpperCase()}
             </button>
 
-            {/* Cinema Filter */}
+            {/* Neighborhood Filter */}
             <div className="relative">
               <button
-                onClick={() => setShowCinemaMenu(!showCinemaMenu)}
+                onClick={() => setShowNeighborhoodMenu(!showNeighborhoodMenu)}
                 className="flex items-center gap-2 border border-red-400 text-red-400 px-4 py-3 uppercase text-sm hover:bg-red-400 hover:text-black transition-colors"
               >
-                {t('filters.allOpenAirCinemas')}
+                {getNeighborhoodDisplayText()}
                 <Filter size={16} />
               </button>
-              
-              {/* Cinema menu contents... */}
+
+              {showNeighborhoodMenu && (
+                <div className="absolute right-0 top-full mt-2 bg-gray-900 border border-gray-700 rounded-lg shadow-xl z-10 min-w-[200px]">
+                  <div className="p-2">
+                    <button
+                      className={`block w-full text-left px-4 py-2 rounded mb-2 ${
+                        selectedNeighborhoods.length === 0 
+                          ? 'bg-red-400 text-black' 
+                          : 'hover:bg-gray-800 text-white'
+                      }`}
+                      onClick={clearNeighborhoods}
+                    >
+                      {t('filters.allNeighborhoods')}
+                    </button>
+                    
+                    {neighborhoods.map(neighborhood => (
+                      <button
+                        key={neighborhood}
+                        className={`block w-full text-left px-4 py-2 rounded flex items-center ${
+                          selectedNeighborhoods.includes(neighborhood)
+                            ? 'bg-gray-800 text-red-400'
+                            : 'hover:bg-gray-800 text-white'
+                        }`}
+                        onClick={() => toggleNeighborhoodSelection(neighborhood)}
+                      >
+                        <span className="mr-2">
+                          {selectedNeighborhoods.includes(neighborhood) ? '✓' : ''}
+                        </span>
+                        {neighborhood}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -171,14 +247,13 @@ function CinemaWebsite() {
         ) : (
           <MovieList movies={movies} />
         )}
-
       </div>
 
       {/* Click outside to close menu */}
-      {showCinemaMenu && (
+      {showNeighborhoodMenu && (
         <div
           className="fixed inset-0 z-5"
-          onClick={() => setShowCinemaMenu(false)}
+          onClick={() => setShowNeighborhoodMenu(false)}
         />
       )}
     </div>

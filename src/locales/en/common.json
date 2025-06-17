@@ -11,7 +11,9 @@
     "myFilms": "MY FILMS"
   },
   "filters": {
-    "allOpenAirCinemas": "ALL OPEN AIR CINEMAS"
+    "allOpenAirCinemas": "ALL OPEN AIR CINEMAS",
+    "allNeighborhoods": "ALL NEIGHBORHOODS",
+    "multipleNeighborhoods": "Multiple Neighborhoods"
   },
   "movieCard": {
     "filmInfoTickets": "Film Info & Tickets",

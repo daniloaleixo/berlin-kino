@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { getMovies } from '../services/movieService';
-import { operations } from '../types/.generated/cinemas-api.types';
+import { operations, components } from '../types/.generated/cinemas-api.types';
 import { Movie } from '../types/movies.types';
 
-export type APIQuery = operations['AppController_getFlightPrices']['parameters']['query']; 
+export type APIQuery = operations['AppController_getFlightPrices']['parameters']['query'];
+export type Neighborhood = components["schemas"]["Neighborhood"];
 
 const useMovies = (params: APIQuery) => {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -25,7 +26,9 @@ const useMovies = (params: APIQuery) => {
     };
 
     loadMovies();
-  },  [params.language, params.date, params.query]);
+  },  [params.language, params.date, params.query,  
+    // Check if neighborhoods array exists and stringify for comparison
+    params.neighborhood ? JSON.stringify(params.neighborhood) : null]);
 
   return { movies, loading, error };
 };
