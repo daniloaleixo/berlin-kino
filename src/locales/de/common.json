@@ -1,0 +1,28 @@
+{
+  "title": "DAS PROGRAMM DER KINOS IN BERLIN, BRANDENBURG UND DARÜBER HINAUS",
+  "tabs": {
+    "today": "HEUTE",
+    "tomorrow": "MORGEN",
+    "dayAfterTomorrow": "ÜBERMORGEN",
+    "date": "DATUM"
+  },
+  "header": {
+    "search": "FILM/KINO SUCHEN",
+    "myFilms": "MEINE FILME"
+  },
+  "filters": {
+    "allOpenAirCinemas": "ALLE FREILUFTKINOS"
+  },
+  "movieCard": {
+    "filmInfoTickets": "Film Info & Tickets",
+    "watchTrailer": "Trailer ansehen",
+    "director": "Regie",
+    "cast": "Besetzung",
+    "duration": "Dauer",
+    "genre": "Genre",
+    "synopsis": "Inhalt"
+  },
+  "errors": {
+    "fetchFailed": "Filme konnten nicht geladen werden"
+  }
+}

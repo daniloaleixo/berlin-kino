@@ -1,0 +1,28 @@
+{
+  "title": "THE PROGRAMME OF CINEMAS IN BERLIN, BRANDENBURG AND BEYOND",
+  "tabs": {
+    "today": "TODAY",
+    "tomorrow": "TOMORROW",
+    "dayAfterTomorrow": "DAY AFTER TOMORROW",
+    "date": "DATE"
+  },
+  "header": {
+    "search": "SEARCH FILM/CINEMA",
+    "myFilms": "MY FILMS"
+  },
+  "filters": {
+    "allOpenAirCinemas": "ALL OPEN AIR CINEMAS"
+  },
+  "movieCard": {
+    "filmInfoTickets": "Film Info & Tickets",
+    "watchTrailer": "Watch Trailer",
+    "director": "Director",
+    "cast": "Cast",
+    "duration": "Duration",
+    "genre": "Genre",
+    "synopsis": "Synopsis"
+  },
+  "errors": {
+    "fetchFailed": "Failed to fetch movies"
+  }
+}

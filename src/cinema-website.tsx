@@ -1,5 +1,6 @@
 import { Filter, Menu, X } from 'lucide-react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next'; // Import useTranslation hook
 import { DateHeader } from './components/DateHeader';
 import { MainTitle } from './components/MainTitle';
 import { MovieList } from './components/MovieList';
@@ -7,9 +8,9 @@ import { Navigation } from './components/Navigation';
 import { SearchComponent } from './components/Search';
 import useMovies from './hooks/useMovies';
 
-const tabs = ['TODAY', 'TOMORROW', 'DAY AFTER TOMORROW', 'DATE'];
-
 function CinemaWebsite() {
+  const { t, i18n } = useTranslation(); // Use the hook
+  
   // Helper function to format date as YYYY-MM-DD
   const formatDate = (date: Date): string => {
     return date.toISOString().split('T')[0];
@@ -18,10 +19,12 @@ function CinemaWebsite() {
   // State variables for managing the application state
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedTab, setSelectedTab] = useState(0);
-  const [language, setLanguage] = useState<"de" | "en">("en"); // Default language
   const [selectedDate, setSelectedDate] = useState<string>(formatDate(new Date())); // Default to today
   const [showCinemaMenu, setShowCinemaMenu] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+
+  // Use i18n.language instead of a separate state
+  const language = i18n.language as "de" | "en";
 
   // Using our useMovies hook with the filter parameters
   const { movies, loading, error } = useMovies({
@@ -51,7 +54,6 @@ function CinemaWebsite() {
         break;
       case 3: // DATE - Could open a date picker
         // Let user select date through a date picker
-        // For now, we'll just leave it undefined
         setSelectedDate(undefined as any); // TODO
         break;
     }
@@ -59,35 +61,42 @@ function CinemaWebsite() {
 
   // Function to toggle language
   const toggleLanguage = () => {
-    setLanguage(prev => prev === "en" ? "de" : "en");
+    i18n.changeLanguage(language === "en" ? "de" : "en");
   };
+
+  // Define tabs using translations
+  const tabs = [
+    t('tabs.today'),
+    t('tabs.tomorrow'), 
+    t('tabs.dayAfterTomorrow'), 
+    t('tabs.date')
+  ];
 
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Header */}
       <header className="bg-black border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-4 py-4">
-          {/* TODO */}
-          {/* <div className="flex justify-between items-center"> */}
-            {/* <SearchComponent searchQuery={searchQuery} setSearchQuery={setSearchQuery} /> */}
+          <div className="flex justify-between items-center">
+            <SearchComponent searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
 
             {/* Desktop Navigation */}
-            {/* <Navigation /> */}
+            <Navigation />
 
             {/* Mobile Menu Button */}
-            {/* <button
+            <button
               className="md:hidden text-red-400"
               onClick={() => setShowMobileMenu(!showMobileMenu)}
-            > */}
-              {/* {showMobileMenu ? <X size={24} /> : <Menu size={24} />}
+            >
+              {showMobileMenu ? <X size={24} /> : <Menu size={24} />}
             </button>
-          </div> */}
+          </div>
 
           {/* Mobile Menu */}
           {showMobileMenu && (
             <div className="md:hidden mt-4 border-t border-gray-800 pt-4">
               <button className="block w-full border border-red-400 text-red-400 px-4 py-2 rounded mb-2">
-                MY FILMS
+                {t('header.myFilms')}
               </button>
               <span
                 className="text-sm cursor-pointer hover:text-red-400"
@@ -133,31 +142,17 @@ function CinemaWebsite() {
             </button>
 
             {/* Cinema Filter */}
-            {/* <div className="relative">
+            <div className="relative">
               <button
                 onClick={() => setShowCinemaMenu(!showCinemaMenu)}
                 className="flex items-center gap-2 border border-red-400 text-red-400 px-4 py-3 uppercase text-sm hover:bg-red-400 hover:text-black transition-colors"
               >
-                ALL OPEN AIR CINEMAS
+                {t('filters.allOpenAirCinemas')}
                 <Filter size={16} />
               </button>
-
-              {showCinemaMenu && (
-                <div className="absolute right-0 top-full mt-2 bg-gray-900 border border-gray-700 rounded-lg shadow-xl z-10 min-w-[300px]">
-                  <div className="p-2">
-                    <button className="block w-full text-left px-4 py-2 hover:bg-gray-800 rounded">
-                      Freiluftkino Hasenheide
-                    </button>
-                    <button className="block w-full text-left px-4 py-2 hover:bg-gray-800 rounded">
-                      Strandbad Wendenschloss
-                    </button>
-                    <button className="block w-full text-left px-4 py-2 hover:bg-gray-800 rounded">
-                      Central Freiluftkino Mitte
-                    </button>
-                  </div>
-                </div>
-              )}
-            </div> */}
+              
+              {/* Cinema menu contents... */}
+            </div>
           </div>
         </div>
 
@@ -171,7 +166,7 @@ function CinemaWebsite() {
           </div>
         ) : error ? (
           <div className="bg-red-900/20 border border-red-900 text-red-400 p-4 rounded">
-            {error}
+            {t('errors.fetchFailed')}
           </div>
         ) : (
           <MovieList movies={movies} />
