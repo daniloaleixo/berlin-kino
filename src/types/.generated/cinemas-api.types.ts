@@ -25,11 +25,15 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /** @enum {string} */
+        Neighborhood: "Mitte" | "Prenzlauer Berg" | "Kreuzberg" | "Friedrichshain" | "Neukölln" | "Charlottenburg" | "Schöneberg";
         Cinema: {
             /** @description Unique identifier for the cinema */
             id: number;
             /** @description Name of the cinema */
             name: string;
+            /** @description Neighborhood where the cinema is located */
+            neighborhood: string;
             /** @description Physical address of the cinema */
             address: string;
             /** @description City where the cinema is located */
@@ -188,6 +192,8 @@ export interface operations {
                 date?: string;
                 /** @description Text to search for in movie titles or cinema names */
                 query?: string;
+                /** @description Filter by cinemas in specific neighborhoods */
+                neighborhood?: components["schemas"]["Neighborhood"][];
             };
             header?: never;
             path?: never;
