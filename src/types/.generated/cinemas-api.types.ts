@@ -184,6 +184,10 @@ export interface operations {
             query: {
                 /** @description Language for the API response */
                 language: "de" | "en";
+                /** @description Date to filter movies by (format: YYYY-MM-DD) */
+                date?: string;
+                /** @description Text to search for in movie titles or cinema names */
+                query?: string;
             };
             header?: never;
             path?: never;
