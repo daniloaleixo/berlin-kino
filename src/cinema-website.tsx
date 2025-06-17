@@ -1,47 +1,13 @@
 import { Filter, Menu, X } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { DateHeader } from './components/DateHeader';
 import { MainTitle } from './components/MainTitle';
 import { MovieList } from './components/MovieList';
 import { Navigation } from './components/Navigation';
 import { SearchComponent } from './components/Search';
+import { getMovies } from './services/movieService';
 import { Movie } from './types/movies.types';
-import { DateHeader } from './components/DateHeader';
-
-// Mock data
-const mockMovies: Movie[] = [
-  {
-    id: 1,
-    time: '16:30',
-    title: 'Schneewittchen',
-    cinema: 'FREILUFTKINO HASENHEIDE',
-    language: 'DEUTSCH',
-    type: 'FILM INFO & TICKETS'
-  },
-  {
-    id: 2,
-    time: '18:30',
-    title: 'Memory',
-    cinema: 'STRANDBAD WENDENSCHLOSS',
-    language: 'DF',
-    type: 'FILM INFO & TICKETS'
-  },
-  {
-    id: 3,
-    time: '18:45',
-    title: 'Was Marielle Weiß',
-    cinema: 'FREILUFTKINO HASENHEIDE',
-    language: 'DEUTSCH MIT ENGL. UT',
-    type: 'FILM INFO & TICKETS'
-  },
-  {
-    id: 4,
-    time: '21:00',
-    title: 'Hayao Miyazaki: Spirited Away',
-    cinema: 'CENTRAL FREILUFTKINO MITTE',
-    language: 'SUBTITLED OV ENGLISH',
-    type: 'FILM INFO & TICKETS'
-  }
-];
+import { test } from './test';
 
 const tabs = ['TODAY', 'TOMORROW', 'DAY AFTER TOMORROW', 'DATE'];
 
@@ -50,6 +16,25 @@ function CinemaWebsite() {
   const [selectedTab, setSelectedTab] = useState(0);
   const [showCinemaMenu, setShowCinemaMenu] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [movies, setMovies] = useState<Movie[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const loadMovies = async () => {
+      try {
+        // const movieData = await getMovies();
+        const movieData = test; // Using test data for now
+        setMovies(movieData);
+      } catch (err) {
+        setError('Failed to fetch movies');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadMovies();
+  }, []);
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -57,13 +42,13 @@ function CinemaWebsite() {
       <header className="bg-black border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
-          <SearchComponent searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-            
+            <SearchComponent searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+
             {/* Desktop Navigation */}
             <Navigation />
 
             {/* Mobile Menu Button */}
-            <button 
+            <button
               className="md:hidden text-red-400"
               onClick={() => setShowMobileMenu(!showMobileMenu)}
             >
@@ -95,17 +80,16 @@ function CinemaWebsite() {
               <button
                 key={tab}
                 onClick={() => setSelectedTab(index)}
-                className={`px-6 py-3 border border-red-400 uppercase font-medium text-sm transition-colors ${
-                  selectedTab === index
+                className={`px-6 py-3 border border-red-400 uppercase font-medium text-sm transition-colors ${selectedTab === index
                     ? 'bg-red-400 text-black'
                     : 'bg-transparent text-white hover:bg-red-400 hover:text-black'
-                }`}
+                  }`}
               >
                 {tab}
               </button>
             ))}
           </div>
-          
+
           {/* Cinema Filter */}
           <div className="relative">
             <button
@@ -115,7 +99,7 @@ function CinemaWebsite() {
               ALL OPEN AIR CINEMAS
               <Filter size={16} />
             </button>
-            
+
             {showCinemaMenu && (
               <div className="absolute right-0 top-full mt-2 bg-gray-900 border border-gray-700 rounded-lg shadow-xl z-10 min-w-[300px]">
                 <div className="p-2">
@@ -137,14 +121,21 @@ function CinemaWebsite() {
         {/* Date Header */}
         <DateHeader />
 
+
         {/* Movie Listings */}
-        <MovieList movies={mockMovies} />
+        {loading ? (
+          <div>Loading...</div>
+        ) : error ? (
+          <div>{error}</div>
+        ) : (
+          <MovieList movies={movies} />
+        )}
 
       </div>
 
       {/* Click outside to close menu */}
       {showCinemaMenu && (
-        <div 
+        <div
           className="fixed inset-0 z-5"
           onClick={() => setShowCinemaMenu(false)}
         />
