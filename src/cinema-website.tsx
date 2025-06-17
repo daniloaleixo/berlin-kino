@@ -133,7 +133,7 @@ function CinemaWebsite() {
             </button>
 
             {/* Cinema Filter */}
-            <div className="relative">
+            {/* <div className="relative">
               <button
                 onClick={() => setShowCinemaMenu(!showCinemaMenu)}
                 className="flex items-center gap-2 border border-red-400 text-red-400 px-4 py-3 uppercase text-sm hover:bg-red-400 hover:text-black transition-colors"
@@ -157,7 +157,7 @@ function CinemaWebsite() {
                   </div>
                 </div>
               )}
-            </div>
+            </div> */}
           </div>
         </div>
 
