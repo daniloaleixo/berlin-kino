@@ -67,20 +67,21 @@ function CinemaWebsite() {
       {/* Header */}
       <header className="bg-black border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-4 py-4">
-          <div className="flex justify-between items-center">
-            <SearchComponent searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+          {/* TODO */}
+          {/* <div className="flex justify-between items-center"> */}
+            {/* <SearchComponent searchQuery={searchQuery} setSearchQuery={setSearchQuery} /> */}
 
             {/* Desktop Navigation */}
-            <Navigation />
+            {/* <Navigation /> */}
 
             {/* Mobile Menu Button */}
-            <button
+            {/* <button
               className="md:hidden text-red-400"
               onClick={() => setShowMobileMenu(!showMobileMenu)}
-            >
-              {showMobileMenu ? <X size={24} /> : <Menu size={24} />}
+            > */}
+              {/* {showMobileMenu ? <X size={24} /> : <Menu size={24} />}
             </button>
-          </div>
+          </div> */}
 
           {/* Mobile Menu */}
           {showMobileMenu && (

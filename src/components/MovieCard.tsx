@@ -23,9 +23,14 @@ export const MovieCard = ({ movie }: {
           <span className="text-gray-400 text-sm">
             {movie.language}
           </span>
-          <button className="text-red-400 text-sm uppercase hover:underline p-0 bg-transparent border-0">
+          <a 
+            href={movie.cinema?.website} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="text-red-400 text-sm uppercase hover:underline p-0 bg-transparent border-0 cursor-pointer"
+          >
             Film Info & Tickets
-          </button>
+          </a>
         </div>
 
       </div>
