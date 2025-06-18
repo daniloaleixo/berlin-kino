@@ -2,6 +2,7 @@ import { Filter, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next'; // Import useTranslation hook
 import { DateHeader } from './components/DateHeader';
+import { DatePicker } from './components/DatePicker';
 import { MainTitle } from './components/MainTitle';
 import { MovieList } from './components/MovieList';
 import { Navigation } from './components/Navigation';
@@ -22,6 +23,7 @@ function CinemaWebsite() {
   const [selectedDate, setSelectedDate] = useState<string>(formatDate(new Date())); // Default to today
   const [showNeighborhoodMenu, setShowNeighborhoodMenu] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [showDatePicker, setShowDatePicker] = useState(false);
   const [selectedNeighborhoods, setSelectedNeighborhoods] = useState<Neighborhood[]>(['Mitte']); // Default to "Mitte" neighborhood
 
   // Use i18n.language instead of a separate state
@@ -54,10 +56,25 @@ function CinemaWebsite() {
         today.setDate(today.getDate() + 2);
         setSelectedDate(formatDate(today));
         break;
-      case 3: // DATE - Could open a date picker
-        // Let user select date through a date picker
-        setSelectedDate(undefined as any); // TODO
+      case 3: // DATE - Open date picker
+        setShowDatePicker(true);
         break;
+    }
+  };
+
+  // Function to handle date selection from datepicker
+  const handleDateSelect = (date: string) => {
+    setSelectedDate(date);
+    setShowDatePicker(false);
+  };
+
+  // Function to close datepicker
+  const handleCloseDatePicker = () => {
+    setShowDatePicker(false);
+    // If no date was selected, revert to today's tab
+    if (!selectedDate) {
+      setSelectedTab(0);
+      setSelectedDate(formatDate(new Date()));
     }
   };
 
@@ -248,6 +265,14 @@ function CinemaWebsite() {
           <MovieList movies={movies} />
         )}
       </div>
+
+      {/* DatePicker Modal */}
+      <DatePicker
+        isOpen={showDatePicker}
+        onClose={handleCloseDatePicker}
+        onDateSelect={handleDateSelect}
+        currentDate={selectedDate}
+      />
 
       {/* Click outside to close menu */}
       {showNeighborhoodMenu && (
