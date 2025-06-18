@@ -26,5 +26,31 @@
   },
   "errors": {
     "fetchFailed": "Failed to fetch movies"
+  },
+  "information": {
+    "back": "Back",
+    "title": "Information",
+    "mission": {
+      "title": "Our Mission",
+      "description": "Berlin Kino was created to provide film enthusiasts with a central platform where they can find all cinema programs in Berlin in one place. We believe that the cinema experience in Berlin is unique and deserves to be easily accessible."
+    },
+    "why": {
+      "title": "Why did we create this page?",
+      "description": "Berlin is one of the most diverse cinema cities in the world. With over 100 cinemas, from large multiplex cinemas to small arthouse cinemas and open-air cinemas, it can be overwhelming to find the perfect cinema experience.",
+      "platformGoals": "This platform was developed to:",
+      "goal1": "Gather all cinema programs in one place",
+      "goal2": "Simplify the search for movies and cinemas",
+      "goal3": "Celebrate the diversity of Berlin's cinema landscape",
+      "goal4": "Help film enthusiasts discover new cinemas and movies"
+    },
+    "cinemaScene": {
+      "title": "The Berlin Cinema Scene",
+      "description": "Berlin offers a unique mix of historic cinemas, modern multiplex cinemas, arthouse cinemas, and open-air cinemas. From the legendary cinemas at Potsdamer Platz to the hidden gems in Kreuzberg and Friedrichshain - every corner of Berlin has its own cinema story to tell."
+    },
+    "contact": {
+      "title": "Contact & Links",
+      "description": "Visit our main website for more information about our projects and services:"
+    },
+    "footer": "© 2024 Berlin Kino. Developed with ❤️ for the Berlin cinema community."
   }
 }

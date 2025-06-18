@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next'; // Import useTranslation hook
 import { DateHeader } from './components/DateHeader';
 import { DatePicker } from './components/DatePicker';
+import { InformationPage } from './components/InformationPage';
 import { MainTitle } from './components/MainTitle';
 import { MovieList } from './components/MovieList';
 import { Navigation } from './components/Navigation';
@@ -24,6 +25,7 @@ function CinemaWebsite() {
   const [showNeighborhoodMenu, setShowNeighborhoodMenu] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showDatePicker, setShowDatePicker] = useState(false);
+  const [showInformationPage, setShowInformationPage] = useState(false);
   const [selectedNeighborhoods, setSelectedNeighborhoods] = useState<Neighborhood[]>(['Mitte']); // Default to "Mitte" neighborhood
 
   // Use i18n.language instead of a separate state
@@ -103,6 +105,16 @@ function CinemaWebsite() {
     i18n.changeLanguage(language === "en" ? "de" : "en");
   };
 
+  // Function to show information page
+  const handleShowInformation = () => {
+    setShowInformationPage(true);
+  };
+
+  // Function to hide information page
+  const handleHideInformation = () => {
+    setShowInformationPage(false);
+  };
+
   // Define tabs using translations
   const tabs = [
     t('tabs.today'),
@@ -132,6 +144,11 @@ function CinemaWebsite() {
     }
     return t('filters.multipleNeighborhoods', { count: selectedNeighborhoods.length });
   };
+
+  // If information page is shown, render it instead of main content
+  if (showInformationPage) {
+    return <InformationPage onBack={handleHideInformation} />;
+  }
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -265,6 +282,31 @@ function CinemaWebsite() {
           <MovieList movies={movies} />
         )}
       </div>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 border-t border-gray-800 mt-16">
+        <div className="max-w-7xl mx-auto px-4 py-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="text-gray-400 text-sm">
+              © 2024 Berlin Kino
+            </div>
+            <div className="flex items-center gap-4">
+              <button
+                onClick={handleShowInformation}
+                className="text-gray-400 hover:text-red-400 transition-colors text-sm"
+              >
+                {t('information.title')}
+              </button>
+              <button
+                onClick={toggleLanguage}
+                className="text-gray-400 hover:text-red-400 transition-colors text-sm"
+              >
+                {language.toUpperCase()}
+              </button>
+            </div>
+          </div>
+        </div>
+      </footer>
 
       {/* DatePicker Modal */}
       <DatePicker
