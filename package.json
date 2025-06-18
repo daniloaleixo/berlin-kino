@@ -11,9 +11,13 @@
     "@types/node": "^16.18.126",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
+    "axios": "^1.10.0",
+    "i18next": "^25.2.1",
+    "i18next-browser-languagedetector": "^8.2.0",
     "lucide-react": "^0.514.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-i18next": "^15.5.3",
     "react-scripts": "5.0.1",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
@@ -21,8 +25,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "deploy": "npm run build && aws s3 --profile personal cp ./build s3://berlinkino.aereozen.com --recursive",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "generate:docs": "npx openapi-typescript https://93794xw5v6.execute-api.us-east-1.amazonaws.com/dev/cinemas/api-json --output src/types/.generated/cinemas-api.types.ts"
   },
   "eslintConfig": {
     "extends": [

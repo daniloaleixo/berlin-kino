@@ -1,0 +1,56 @@
+{
+  "title": "DAS PROGRAMM DER KINOS IN BERLIN, BRANDENBURG UND DARÜBER HINAUS",
+  "tabs": {
+    "today": "HEUTE",
+    "tomorrow": "MORGEN",
+    "dayAfterTomorrow": "ÜBERMORGEN",
+    "date": "DATUM"
+  },
+  "header": {
+    "search": "FILM/KINO SUCHEN",
+    "myFilms": "MEINE FILME"
+  },
+  "filters": {
+    "allOpenAirCinemas": "ALLE FREILUFTKINOS",
+    "allNeighborhoods": "ALLE STADTTEILE",
+    "multipleNeighborhoods": "Mehrere Stadtteile"
+  },
+  "movieCard": {
+    "filmInfoTickets": "Film Info & Tickets",
+    "watchTrailer": "Trailer ansehen",
+    "director": "Regie",
+    "cast": "Besetzung",
+    "duration": "Dauer",
+    "genre": "Genre",
+    "synopsis": "Inhalt"
+  },
+  "errors": {
+    "fetchFailed": "Filme konnten nicht geladen werden"
+  },
+  "information": {
+    "back": "Zurück",
+    "title": "Information",
+    "mission": {
+      "title": "Unsere Mission",
+      "description": "Berlin Kino wurde geschaffen, um Filmbegeisterten eine zentrale Plattform zu bieten, auf der sie alle Kinoprogramme in Berlin an einem Ort finden können. Wir glauben, dass das Kinoerlebnis in Berlin einzigartig ist und verdient, leicht zugänglich zu sein."
+    },
+    "why": {
+      "title": "Warum haben wir diese Seite erstellt?",
+      "description": "Berlin ist eine der vielfältigsten Kinostädte der Welt. Mit über 100 Kinos, von großen Multiplex-Kinos bis hin zu kleinen Arthouse-Kinos und Freiluftkinos, kann es überwältigend sein, das perfekte Kinoerlebnis zu finden.",
+      "platformGoals": "Diese Plattform wurde entwickelt, um:",
+      "goal1": "Alle Kinoprogramme an einem Ort zu sammeln",
+      "goal2": "Die Suche nach Filmen und Kinos zu vereinfachen",
+      "goal3": "Die Vielfalt der Berliner Kinolandschaft zu feiern",
+      "goal4": "Filmbegeisterten zu helfen, neue Kinos und Filme zu entdecken"
+    },
+    "cinemaScene": {
+      "title": "Die Berliner Kinolandschaft",
+      "description": "Berlin bietet eine einzigartige Mischung aus historischen Kinos, modernen Multiplex-Kinos, Arthouse-Kinos und Freiluftkinos. Von den legendären Kinos am Potsdamer Platz bis hin zu den versteckten Juwelen in Kreuzberg und Friedrichshain - jede Ecke Berlins hat ihre eigene Kinogeschichte zu erzählen."
+    },
+    "contact": {
+      "title": "Kontakt & Links",
+      "description": "Besuchen Sie unsere Hauptwebsite für weitere Informationen über unsere Projekte und Dienstleistungen:"
+    },
+    "footer": "© 2024 Berlin Kino. Entwickelt mit ❤️ für die Berliner Kinogemeinschaft."
+  }
+}
