@@ -97,12 +97,12 @@ function CinemaWebsite() {
   // Define neighborhoods
   const neighborhoods: Neighborhood[] = [
     "Mitte",
-    "Prenzlauer Berg",
+    // "Prenzlauer Berg",
     "Kreuzberg",
     "Friedrichshain",
-    "Neukölln",
-    "Charlottenburg",
-    "Schöneberg"
+    // "Neukölln",
+    // "Charlottenburg",
+    // "Schöneberg"
   ];
 
   // Get a display text for the neighborhood filter button
