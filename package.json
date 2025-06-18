@@ -25,6 +25,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "deploy": "npm run build && aws s3 --profile personal cp ./build s3://berlinkino.aereozen.com --recursive",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "generate:docs": "npx openapi-typescript https://93794xw5v6.execute-api.us-east-1.amazonaws.com/dev/cinemas/api-json --output src/types/.generated/cinemas-api.types.ts"
