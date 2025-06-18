@@ -136,25 +136,25 @@ function CinemaWebsite() {
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Header */}
-      <header className="bg-black border-b border-gray-800">
+      {/* <header className="bg-black border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
             <SearchComponent searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
 
             {/* Desktop Navigation */}
-            <Navigation />
+            {/* <Navigation /> */}
 
             {/* Mobile Menu Button */}
-            <button
+            {/* <button
               className="md:hidden text-red-400"
               onClick={() => setShowMobileMenu(!showMobileMenu)}
             >
               {showMobileMenu ? <X size={24} /> : <Menu size={24} />}
             </button>
-          </div>
+          </div> */}
 
           {/* Mobile Menu */}
-          {showMobileMenu && (
+          {/*{showMobileMenu && (
             <div className="md:hidden mt-4 border-t border-gray-800 pt-4">
               <button className="block w-full border border-red-400 text-red-400 px-4 py-2 rounded mb-2">
                 {t('header.myFilms')}
@@ -168,7 +168,7 @@ function CinemaWebsite() {
             </div>
           )}
         </div>
-      </header>
+      </header> */}
 
       {/* Main Title Section */}
       <MainTitle />
