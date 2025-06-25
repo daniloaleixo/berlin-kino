@@ -7,7 +7,8 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
-  <meta name="description" content="Discover all cinema schedules in Berlin. Browse movie times, locations, and special screenings across Berlin's best cinemas in one place." />
+  <meta name="description"
+    content="Discover all cinema schedules in Berlin. Browse movie times, locations, and special screenings across Berlin's best cinemas in one place." />
   <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo.png" />
   <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -26,14 +27,16 @@
   <title>Berlin Cinema Guide – Schedules & Listings for All Cinemas</title>
   <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="Berlin Cinema Guide – Schedules & Listings for All Cinemas" />
-  <meta property="og:description" content="Discover all cinema schedules in Berlin. Browse movie times, locations, and special screenings across Berlin's best cinemas in one place." />
+  <meta property="og:description"
+    content="Discover all cinema schedules in Berlin. Browse movie times, locations, and special screenings across Berlin's best cinemas in one place." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://your-domain.com/" />
   <meta property="og:image" content="%PUBLIC_URL%/logo.png" />
   <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Berlin Cinema Guide – Schedules & Listings for All Cinemas" />
-  <meta name="twitter:description" content="Discover all cinema schedules in Berlin. Browse movie times, locations, and special screenings across Berlin's best cinemas in one place." />
+  <meta name="twitter:description"
+    content="Discover all cinema schedules in Berlin. Browse movie times, locations, and special screenings across Berlin's best cinemas in one place." />
   <meta name="twitter:image" content="%PUBLIC_URL%/logo.png" />
   <!-- Structured Data (JSON-LD) for a catalog website -->
   <script type="application/ld+json">
@@ -53,6 +56,16 @@
   </script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-J2H4ZR7QVV"></script>
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-MXWFDWHX');</script>
+  <!-- End Google Tag Manager -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
@@ -64,6 +77,10 @@
 
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MXWFDWHX" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
   <div id="root"></div>
   <!--
       This HTML file is a template.
