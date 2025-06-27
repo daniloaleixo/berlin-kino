@@ -9,8 +9,13 @@ import { MovieList } from './components/MovieList';
 import { Navigation } from './components/Navigation';
 import { SearchComponent } from './components/Search';
 import useMovies, { Neighborhood } from './hooks/useMovies';
+import { CityConfig } from './utils/cityConfig';
 
-function CinemaWebsite() {
+interface CinemaWebsiteProps {
+  cityConfig?: CityConfig;
+}
+
+function CinemaWebsite({ cityConfig }: CinemaWebsiteProps) {
   const { t, i18n } = useTranslation(); // Use the hook
 
   // Helper function to format date as YYYY-MM-DD
@@ -26,7 +31,9 @@ function CinemaWebsite() {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [showInformationPage, setShowInformationPage] = useState(false);
-  const [selectedNeighborhoods, setSelectedNeighborhoods] = useState<Neighborhood[]>(['Mitte']); // Default to "Mitte" neighborhood
+  const [selectedNeighborhoods, setSelectedNeighborhoods] = useState<Neighborhood[]>(
+    cityConfig?.neighborhoods.slice(0, 1) as Neighborhood[] || ['Mitte']
+  ); // Default to first neighborhood or "Mitte"
 
   // Use i18n.language instead of a separate state
   const language = i18n.language as "de" | "en";
@@ -123,15 +130,11 @@ function CinemaWebsite() {
     t('tabs.date')
   ];
 
-  // Define neighborhoods
-  const neighborhoods: Neighborhood[] = [
+  // Define neighborhoods based on city config
+  const neighborhoods: Neighborhood[] = cityConfig?.neighborhoods as Neighborhood[] || [
     "Mitte",
-    // "Prenzlauer Berg",
     "Kreuzberg",
     "Friedrichshain",
-    // "Neukölln",
-    // "Charlottenburg",
-    // "Schöneberg"
   ];
 
   // Get a display text for the neighborhood filter button

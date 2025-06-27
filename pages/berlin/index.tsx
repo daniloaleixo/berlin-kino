@@ -1,0 +1,56 @@
+import React from 'react';
+import Head from 'next/head';
+import { GetStaticProps } from 'next';
+import { cityConfigs } from '../../src/utils/cityConfig';
+import CinemaWebsite from '../../src/cinema-website';
+
+interface BerlinPageProps {
+  cityConfig: typeof cityConfigs.berlin;
+}
+
+export default function BerlinPage({ cityConfig }: BerlinPageProps) {
+  return (
+    <>
+      <Head>
+        <title>{cityConfig.seo.title}</title>
+        <meta name="description" content={cityConfig.seo.description} />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content={cityConfig.seo.title} />
+        <meta property="og:description" content={cityConfig.seo.description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={cityConfig.seo.url} />
+        <meta property="og:image" content="/logo.png" />
+        
+        {/* Twitter Cards */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={cityConfig.seo.title} />
+        <meta name="twitter:description" content={cityConfig.seo.description} />
+        <meta name="twitter:image" content="/logo.png" />
+        
+        {/* Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(cityConfig.seo.structuredData),
+          }}
+        />
+        
+        {/* Canonical URL */}
+        <link rel="canonical" href={cityConfig.seo.url} />
+      </Head>
+      
+      <CinemaWebsite cityConfig={cityConfig} />
+    </>
+  );
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  return {
+    props: {
+      cityConfig: cityConfigs.berlin,
+    },
+    // Re-generate every hour
+    revalidate: 3600,
+  };
+}; 

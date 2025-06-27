@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@svgr/webpack": "^8.1.0",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
@@ -15,6 +16,7 @@
     "i18next": "^25.2.1",
     "i18next-browser-languagedetector": "^8.2.0",
     "lucide-react": "^0.514.0",
+    "next": "^15.3.4",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-i18next": "^15.5.3",
@@ -23,9 +25,11 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "deploy": "npm run build && aws s3 --profile personal cp ./build s3://berlinkino.aereozen.com --recursive",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "export": "next export",
+    "deploy": "npm run build && aws s3 --profile personal cp ./out s3://berlinkino.aereozen.com --recursive",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "generate:docs": "npx openapi-typescript https://93794xw5v6.execute-api.us-east-1.amazonaws.com/dev/cinemas/api-json --output src/types/.generated/cinemas-api.types.ts"
