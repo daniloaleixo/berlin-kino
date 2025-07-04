@@ -191,7 +191,7 @@ function CinemaWebsite({ cityConfig }: CinemaWebsiteProps) {
       </header> */}
 
       {/* Main Title Section */}
-      <MainTitle />
+      <MainTitle city={cityConfig?.name} />
 
       {/* Navigation Tabs and Filters */}
       <div className="max-w-7xl mx-auto px-4">

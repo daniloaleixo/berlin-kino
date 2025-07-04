@@ -1,7 +1,15 @@
 export interface CityConfig {
   name: string;
   displayName: string;
+  displayNames: {
+    en: string;
+    de: string;
+  };
   path: string;
+  titles: {
+    en: string;
+    de: string;
+  };
   seo: {
     title: string;
     description: string;
@@ -15,7 +23,15 @@ export const cityConfigs: Record<string, CityConfig> = {
   berlin: {
     name: 'berlin',
     displayName: 'Berlin',
+    displayNames: {
+      en: 'Berlin',
+      de: 'Berlin',
+    },
     path: '/berlin',
+    titles: {
+      en: 'Berlin Cinema Guide',
+      de: 'Kino Guide Berlin',
+    },
     seo: {
       title: "Berlin Cinema Guide – Schedules & Listings for All Cinemas",
       description: "Discover all cinema schedules in Berlin. Browse movie times, locations, and special screenings across Berlin's best cinemas in one place.",
@@ -39,7 +55,15 @@ export const cityConfigs: Record<string, CityConfig> = {
   frankfurt: {
     name: 'frankfurt',
     displayName: 'Frankfurt',
+    displayNames: {
+      en: 'Frankfurt',
+      de: 'Frankfurt',
+    },
     path: '/frankfurt',
+    titles: {
+      en: 'Frankfurt Cinema Guide',
+      de: 'Kino Guide Frankfurt',
+    },
     seo: {
       title: "Frankfurt Cinema Guide – Schedules & Listings for All Cinemas",
       description: "Discover all cinema schedules in Frankfurt. Browse movie times, locations, and special screenings across Frankfurt's best cinemas in one place.",
@@ -63,7 +87,15 @@ export const cityConfigs: Record<string, CityConfig> = {
   munich: {
     name: 'munich',
     displayName: 'Munich',
+    displayNames: {
+      en: 'Munich',
+      de: 'München',
+    },
     path: '/munich',
+    titles: {
+      en: 'Munich Cinema Guide',
+      de: 'Kino Guide München',
+    },
     seo: {
       title: "Munich Cinema Guide – Schedules & Listings for All Cinemas",
       description: "Discover all cinema schedules in Munich. Browse movie times, locations, and special screenings across Munich's best cinemas in one place.",
