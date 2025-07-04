@@ -1,4 +1,4 @@
-import { Filter, Menu, X } from 'lucide-react';
+import { Filter } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next'; // Import useTranslation hook
 import { DateHeader } from './components/DateHeader';
@@ -6,8 +6,6 @@ import { DatePicker } from './components/DatePicker';
 import { InformationPage } from './components/InformationPage';
 import { MainTitle } from './components/MainTitle';
 import { MovieList } from './components/MovieList';
-import { Navigation } from './components/Navigation';
-import { SearchComponent } from './components/Search';
 import useMovies, { Neighborhood } from './hooks/useMovies';
 
 function CinemaWebsite() {
@@ -36,7 +34,8 @@ function CinemaWebsite() {
     language,
     date: selectedDate,
     query: searchQuery,
-    neighborhood: selectedNeighborhoods // Pass the array of neighborhoods
+    neighborhood: selectedNeighborhoods, // Pass the array of neighborhoods
+    city: 'berlin'
   });
 
   // Function to handle date selection based on tab

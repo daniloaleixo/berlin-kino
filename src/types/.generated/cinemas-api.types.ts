@@ -194,6 +194,7 @@ export interface operations {
                 query?: string;
                 /** @description Filter by cinemas in specific neighborhoods */
                 neighborhood?: components["schemas"]["Neighborhood"][];
+                city: string;
             };
             header?: never;
             path?: never;
