@@ -75,7 +75,5 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       cities: getAllCities(),
     },
-    // Re-generate every hour
-    revalidate: 3600,
   };
 }; 

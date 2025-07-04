@@ -291,7 +291,7 @@ function CinemaWebsite({ cityConfig }: CinemaWebsiteProps) {
         <div className="max-w-7xl mx-auto px-4 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="text-gray-400 text-sm">
-              © 2024 Berlin Kino
+              © 2024 Cinema Guide. Developed with ❤️ for the German cinema community.
             </div>
             <div className="flex items-center gap-4">
               <button
