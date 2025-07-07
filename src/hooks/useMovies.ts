@@ -28,7 +28,9 @@ const useMovies = (params: APIQuery) => {
     loadMovies();
   },  [params.language, params.date, params.query,  
     // Check if neighborhoods array exists and stringify for comparison
-    params.neighborhood ? JSON.stringify(params.neighborhood) : null]);
+    params.neighborhood ? JSON.stringify(params.neighborhood) : null,
+    params.city // Add city to dependency array
+  ]);
 
   return { movies, loading, error };
 };

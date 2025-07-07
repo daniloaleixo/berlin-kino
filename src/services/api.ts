@@ -10,6 +10,7 @@ export const fetchMovies = async (params: APIQuery) => {
       language: params.language,
       date: params.date,
       query: params.query,
+      city: params.city, // Add city to query params
     };
     
     // Initialize URL with base parameters

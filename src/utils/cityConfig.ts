@@ -1,5 +1,5 @@
 export interface CityConfig {
-  name: string;
+  name: "berlin" | "frankfurt" | "munich";
   displayName: string;
   displayNames: {
     en: string;
