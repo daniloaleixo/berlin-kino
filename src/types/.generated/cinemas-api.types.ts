@@ -199,7 +199,6 @@ export interface operations {
                 city: "berlin" | "frankfurt" | "munich";
                 /** @description Filter by cinemas in specific neighborhoods */
                 neighborhood?: components["schemas"]["Neighborhood"][];
-                city: string;
             };
             header?: never;
             path?: never;
