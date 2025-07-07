@@ -50,7 +50,7 @@ export const cityConfigs: Record<string, CityConfig> = {
         }
       }
     },
-    neighborhoods: ['Mitte', 'Kreuzberg', 'Friedrichshain']
+    neighborhoods: ['Mitte', 'Kreuzberg', 'Friedrichshain', "Prenzlauer Berg", "Neukölln", "Charlottenburg"]
   },
   frankfurt: {
     name: 'frankfurt',
