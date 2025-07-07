@@ -7,8 +7,13 @@ import { InformationPage } from './components/InformationPage';
 import { MainTitle } from './components/MainTitle';
 import { MovieList } from './components/MovieList';
 import useMovies, { Neighborhood } from './hooks/useMovies';
+import { CityConfig } from './utils/cityConfig';
 
-function CinemaWebsite() {
+interface CinemaWebsiteProps {
+  cityConfig?: CityConfig;
+}
+
+function CinemaWebsite({ cityConfig }: CinemaWebsiteProps) {
   const { t, i18n } = useTranslation(); // Use the hook
 
   // Helper function to format date as YYYY-MM-DD
@@ -24,7 +29,9 @@ function CinemaWebsite() {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [showInformationPage, setShowInformationPage] = useState(false);
-  const [selectedNeighborhoods, setSelectedNeighborhoods] = useState<Neighborhood[]>(['Mitte']); // Default to "Mitte" neighborhood
+  const [selectedNeighborhoods, setSelectedNeighborhoods] = useState<Neighborhood[]>(
+    cityConfig?.neighborhoods.slice(0, 1) as Neighborhood[] || ['Mitte']
+  ); // Default to first neighborhood or "Mitte"
 
   // Use i18n.language instead of a separate state
   const language = i18n.language as "de" | "en";
@@ -35,7 +42,7 @@ function CinemaWebsite() {
     date: selectedDate,
     query: searchQuery,
     neighborhood: selectedNeighborhoods, // Pass the array of neighborhoods
-    city: 'berlin'
+    city: cityConfig?.name || 'berlin', // Add city from cityConfig
   });
 
   // Function to handle date selection based on tab
@@ -122,15 +129,11 @@ function CinemaWebsite() {
     t('tabs.date')
   ];
 
-  // Define neighborhoods
-  const neighborhoods: Neighborhood[] = [
+  // Define neighborhoods based on city config
+  const neighborhoods: Neighborhood[] = cityConfig?.neighborhoods as Neighborhood[] || [
     "Mitte",
-    // "Prenzlauer Berg",
     "Kreuzberg",
     "Friedrichshain",
-    // "Neukölln",
-    // "Charlottenburg",
-    // "Schöneberg"
   ];
 
   // Get a display text for the neighborhood filter button
@@ -187,7 +190,7 @@ function CinemaWebsite() {
       </header> */}
 
       {/* Main Title Section */}
-      <MainTitle />
+      <MainTitle city={cityConfig?.name} />
 
       {/* Navigation Tabs and Filters */}
       <div className="max-w-7xl mx-auto px-4">
@@ -287,7 +290,7 @@ function CinemaWebsite() {
         <div className="max-w-7xl mx-auto px-4 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="text-gray-400 text-sm">
-              © 2024 Berlin Kino
+              © 2024 Cinema Guide. Developed with ❤️ for the German cinema community.
             </div>
             <div className="flex items-center gap-4">
               <button

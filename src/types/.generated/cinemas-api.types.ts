@@ -36,8 +36,11 @@ export interface components {
             neighborhood: string;
             /** @description Physical address of the cinema */
             address: string;
-            /** @description City where the cinema is located */
-            city: string;
+            /**
+             * @description City where the cinema is located
+             * @enum {string}
+             */
+            city: "berlin" | "frankfurt" | "munich";
             /** @description Postal code of the cinema location */
             postalCode: string;
             /** @description Country where the cinema is located */
@@ -192,6 +195,8 @@ export interface operations {
                 date?: string;
                 /** @description Text to search for in movie titles or cinema names */
                 query?: string;
+                /** @description City to filter cinemas by */
+                city: "berlin" | "frankfurt" | "munich";
                 /** @description Filter by cinemas in specific neighborhoods */
                 neighborhood?: components["schemas"]["Neighborhood"][];
                 city: string;
