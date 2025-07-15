@@ -153,7 +153,7 @@ function CinemaWebsite({ cityConfig }: CinemaWebsiteProps) {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-black text-white overflow-x-hidden">
       {/* Header */}
       {/* <header className="bg-black border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-4 py-4">
@@ -193,15 +193,15 @@ function CinemaWebsite({ cityConfig }: CinemaWebsiteProps) {
       <MainTitle city={cityConfig?.name} />
 
       {/* Navigation Tabs and Filters */}
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="w-full px-4 max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8 gap-4">
           {/* Tabs */}
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 w-full lg:w-auto">
             {tabs.map((tab, index) => (
               <button
                 key={tab}
                 onClick={() => handleTabSelection(index)}
-                className={`px-6 py-3 border border-red-400 uppercase font-medium text-sm transition-colors ${selectedTab === index
+                className={`px-4 py-2 lg:px-6 lg:py-3 border border-red-400 uppercase font-medium text-xs lg:text-sm transition-colors flex-shrink-0 ${selectedTab === index
                   ? 'bg-red-400 text-black'
                   : 'bg-transparent text-white hover:bg-red-400 hover:text-black'
                   }`}
@@ -212,27 +212,27 @@ function CinemaWebsite({ cityConfig }: CinemaWebsiteProps) {
           </div>
 
           {/* Language Toggle and Neighborhood Filter */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 lg:gap-4 w-full lg:w-auto">
             {/* Language Toggle */}
             <button
               onClick={toggleLanguage}
-              className="hidden md:block border border-red-400 text-red-400 px-4 py-3 uppercase text-sm hover:bg-red-400 hover:text-black transition-colors"
+              className="hidden md:block border border-red-400 text-red-400 px-3 py-2 lg:px-4 lg:py-3 uppercase text-xs lg:text-sm hover:bg-red-400 hover:text-black transition-colors"
             >
               {language.toUpperCase()}
             </button>
 
             {/* Neighborhood Filter */}
-            <div className="relative">
+            <div className="relative flex-1 lg:flex-none">
               <button
                 onClick={() => setShowNeighborhoodMenu(!showNeighborhoodMenu)}
-                className="flex items-center gap-2 border border-red-400 text-red-400 px-4 py-3 uppercase text-sm hover:bg-red-400 hover:text-black transition-colors"
+                className="flex items-center gap-2 border border-red-400 text-red-400 px-3 py-2 lg:px-4 lg:py-3 uppercase text-xs lg:text-sm hover:bg-red-400 hover:text-black transition-colors w-full lg:w-auto justify-center lg:justify-start"
               >
-                {getNeighborhoodDisplayText()}
-                <Filter size={16} />
+                <span className="truncate">{getNeighborhoodDisplayText()}</span>
+                <Filter size={14} className="flex-shrink-0" />
               </button>
 
               {showNeighborhoodMenu && (
-                <div className="absolute right-0 top-full mt-2 bg-gray-900 border border-gray-700 rounded-lg shadow-xl z-10 min-w-[200px]">
+                <div className="absolute right-0 top-full mt-2 bg-gray-900 border border-gray-700 rounded-lg shadow-xl z-10 min-w-[200px] w-full lg:w-auto">
                   <div className="p-2">
                     <button
                       className={`block w-full text-left px-4 py-2 rounded mb-2 ${
@@ -289,7 +289,7 @@ function CinemaWebsite({ cityConfig }: CinemaWebsiteProps) {
       <footer className="bg-gray-900 border-t border-gray-800 mt-16">
         <div className="max-w-7xl mx-auto px-4 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="text-gray-400 text-sm">
+            <div className="text-gray-400 text-sm text-center md:text-left">
               © 2024 Cinema Guide. Developed with ❤️ for the German cinema community.
             </div>
             <div className="flex items-center gap-4">

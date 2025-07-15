@@ -8,31 +8,31 @@ export const MovieCardExpanded = ({ movie }: {
   const { t, i18n } = useTranslation();
 
   return (
-    <div className="pt-6 animate-fadeIn mb-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="pt-4 lg:pt-6 animate-fadeIn mb-4 lg:mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
         {/* Movie details */}
         <div>
           {movie.directors && movie.directors.length > 0 && (
-            <p className="mb-2">
+            <p className="mb-2 text-sm lg:text-base">
               <span className="text-gray-400">{t('movieCard.director')}:</span> <span className="text-white">
                 {movie.directors.map(director => director.name).join(', ')}
               </span>
             </p>
           )}
           {movie.actors && movie.actors.length > 0 && (
-            <p className="mb-2">
+            <p className="mb-2 text-sm lg:text-base">
               <span className="text-gray-400">{t('movieCard.cast')}:</span> <span className="text-white">
                 {movie.actors.map(actor => actor.name).join(', ')}
               </span>
             </p>
           )}
           {movie.duration && (
-            <p className="mb-2">
+            <p className="mb-2 text-sm lg:text-base">
               <span className="text-gray-400">{t('movieCard.duration')}:</span> <span className="text-white">{movie.duration} min</span>
             </p>
           )}
           {movie.genres && movie.genres.length > 0 && (
-            <p className="mb-2">
+            <p className="mb-2 text-sm lg:text-base">
               <span className="text-gray-400">{t('movieCard.genre')}:</span> <span className="text-white">
                 {movie.genres.map(genre => genre.name).join(', ')}
               </span>
@@ -40,8 +40,8 @@ export const MovieCardExpanded = ({ movie }: {
           )}
           {movie.description && (
             <div className="mt-4">
-              <h4 className="text-red-400 uppercase text-sm mb-2">{t('movieCard.synopsis')}</h4>
-              <p className="text-white text-justify text-sm leading-relaxed">{movie.description}</p>
+              <h4 className="text-red-400 uppercase text-xs lg:text-sm mb-2">{t('movieCard.synopsis')}</h4>
+              <p className="text-white text-justify text-sm lg:text-base leading-relaxed">{movie.description}</p>
             </div>
           )}
 
@@ -52,9 +52,9 @@ export const MovieCardExpanded = ({ movie }: {
                 href={movie.trailers[0].url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center text-red-400 hover:text-red-300 gap-1"
+                className="inline-flex items-center text-red-400 hover:text-red-300 gap-1 text-sm lg:text-base"
               >
-                <ExternalLink size={16} />
+                <ExternalLink size={14} className="lg:w-4 lg:h-4" />
                 <span>{t('movieCard.watchTrailer')}</span>
               </a>
             </div>
@@ -67,7 +67,7 @@ export const MovieCardExpanded = ({ movie }: {
             <img
               src={movie.largeImage}
               alt={movie.title}
-              className="max-h-[300px] rounded shadow-lg object-cover"
+              className="max-h-[200px] lg:max-h-[300px] rounded shadow-lg object-cover w-full max-w-[300px]"
             />
           </div>
         )}
