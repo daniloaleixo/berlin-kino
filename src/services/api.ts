@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { APIQuery } from '../hooks/useMovies';
 
-const API_URL = 'https://93794xw5v6.execute-api.us-east-1.amazonaws.com/dev/cinemas/search';
+const API_URL = 'https://b0a92049qi.execute-api.us-east-1.amazonaws.com/dev/cinemas/search';
 
 export const fetchMovies = async (params: APIQuery) => {
   try {
