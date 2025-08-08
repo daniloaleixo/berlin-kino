@@ -8,6 +8,7 @@ import { MainTitle } from './components/MainTitle';
 import { MovieList } from './components/MovieList';
 import useMovies, { Neighborhood } from './hooks/useMovies';
 import { CityConfig } from './utils/cityConfig';
+import { trackFilterUsage, trackLanguageChange, trackDateSelection } from './utils/analytics';
 
 interface CinemaWebsiteProps {
   cityConfig?: CityConfig;
@@ -35,6 +36,7 @@ function CinemaWebsite({ cityConfig }: CinemaWebsiteProps) {
 
   // Use i18n.language instead of a separate state
   const language = i18n.language as "de" | "en";
+  const cityName = cityConfig?.name || 'unknown';
 
   // Using our useMovies hook with the filter parameters
   const { movies, loading, error } = useMovies({
@@ -54,15 +56,33 @@ function CinemaWebsite({ cityConfig }: CinemaWebsiteProps) {
 
     switch (index) {
       case 0: // TODAY
-        setSelectedDate(formatDate(today));
+        const todayDate = formatDate(today);
+        setSelectedDate(todayDate);
+        trackDateSelection({
+          selectedDate: todayDate,
+          city: cityName,
+          language: language
+        });
         break;
       case 1: // TOMORROW
         today.setDate(today.getDate() + 1);
-        setSelectedDate(formatDate(today));
+        const tomorrowDate = formatDate(today);
+        setSelectedDate(tomorrowDate);
+        trackDateSelection({
+          selectedDate: tomorrowDate,
+          city: cityName,
+          language: language
+        });
         break;
       case 2: // DAY AFTER TOMORROW
         today.setDate(today.getDate() + 2);
-        setSelectedDate(formatDate(today));
+        const dayAfterTomorrowDate = formatDate(today);
+        setSelectedDate(dayAfterTomorrowDate);
+        trackDateSelection({
+          selectedDate: dayAfterTomorrowDate,
+          city: cityName,
+          language: language
+        });
         break;
       case 3: // DATE - Open date picker
         setShowDatePicker(true);
@@ -74,6 +94,13 @@ function CinemaWebsite({ cityConfig }: CinemaWebsiteProps) {
   const handleDateSelect = (date: string) => {
     setSelectedDate(date);
     setShowDatePicker(false);
+    
+    // Track date selection
+    trackDateSelection({
+      selectedDate: date,
+      city: cityName,
+      language: language
+    });
   };
 
   // Function to close datepicker
@@ -91,11 +118,31 @@ function CinemaWebsite({ cityConfig }: CinemaWebsiteProps) {
     setSelectedNeighborhoods(prev => {
       // If it's already selected, remove it
       if (prev.includes(neighborhood)) {
-        return prev.filter(item => item !== neighborhood);
+        const newSelection = prev.filter(item => item !== neighborhood);
+        
+        // Track neighborhood filter removal
+        trackFilterUsage({
+          filterType: 'neighborhood',
+          filterValue: `removed_${neighborhood}`,
+          city: cityName,
+          language: language
+        });
+        
+        return newSelection;
       } 
       // If not selected, add it
       else {
-        return [...prev, neighborhood];
+        const newSelection = [...prev, neighborhood];
+        
+        // Track neighborhood filter addition
+        trackFilterUsage({
+          filterType: 'neighborhood',
+          filterValue: `added_${neighborhood}`,
+          city: cityName,
+          language: language
+        });
+        
+        return newSelection;
       }
     });
   };
@@ -104,11 +151,29 @@ function CinemaWebsite({ cityConfig }: CinemaWebsiteProps) {
   const clearNeighborhoods = () => {
     setSelectedNeighborhoods([]);
     setShowNeighborhoodMenu(false);
+    
+    // Track neighborhood filter clear
+    trackFilterUsage({
+      filterType: 'neighborhood',
+      filterValue: 'cleared_all',
+      city: cityName,
+      language: language
+    });
   };
 
   // Function to toggle language
   const toggleLanguage = () => {
-    i18n.changeLanguage(language === "en" ? "de" : "en");
+    const fromLanguage = language;
+    const toLanguage = language === "en" ? "de" : "en";
+    
+    // Track language change
+    trackLanguageChange({
+      fromLanguage,
+      toLanguage,
+      city: cityName
+    });
+    
+    i18n.changeLanguage(toLanguage);
   };
 
   // Function to show information page
@@ -281,7 +346,7 @@ function CinemaWebsite({ cityConfig }: CinemaWebsiteProps) {
             {t('errors.fetchFailed')}
           </div>
         ) : (
-          <MovieList movies={movies} />
+          <MovieList movies={movies} cityName={cityName} />
         )}
       </div>
 
