@@ -5,9 +5,10 @@ import { MovieCardExpanded } from "./MovieCardExpanded";
 
 interface IProps {
   movies: Movie[];
+  cityName?: string;
 }
 
-export const MovieList: React.FC<IProps> = ({ movies }: IProps) => {
+export const MovieList: React.FC<IProps> = ({ movies, cityName }: IProps) => {
   const [expandedMovieId, setExpandedMovieId] = useState<number | null>(null);
 
   const handleMovieClick = (movieId: number) => {
@@ -28,6 +29,7 @@ export const MovieList: React.FC<IProps> = ({ movies }: IProps) => {
             movie={movie} 
             isExpanded={expandedMovieId === movie.id}
             onClick={() => handleMovieClick(movie.id)}
+            cityName={cityName}
           />
           {expandedMovieId === movie.id && (
             <MovieCardExpanded movie={movie} />
