@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { GetStaticProps } from 'next';
 import { cityConfigs } from '../../src/utils/cityConfig';
 import CinemaWebsite from '../../src/cinema-website';
+import Analytics from '../../src/components/Analytics';
 
 interface BerlinPageProps {
   cityConfig: typeof cityConfigs.berlin;
@@ -41,6 +42,18 @@ export default function BerlinPage({ cityConfig }: BerlinPageProps) {
       </Head>
       
       <CinemaWebsite cityConfig={cityConfig} />
+      
+      {/* Berlin-specific analytics */}
+      <Analytics 
+        pageTitle="Berlin Cinema Guide"
+        pagePath="/berlin"
+        cityName="berlin"
+        customDimensions={{
+          city: "berlin",
+          region: "germany",
+          page_type: "city_page"
+        }}
+      />
     </>
   );
 }

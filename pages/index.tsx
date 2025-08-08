@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { GetStaticProps } from 'next';
 import { getAllCities } from '../src/utils/cityConfig';
+import Analytics from '../src/components/Analytics';
 
 interface HomePageProps {
   cities: ReturnType<typeof getAllCities>;
@@ -66,6 +67,17 @@ export default function HomePage({ cities }: HomePageProps) {
           </div>
         </div>
       </div>
+      
+      {/* Home page analytics */}
+      <Analytics 
+        pageTitle="Cinema Guide - Home"
+        pagePath="/"
+        customDimensions={{
+          page_type: "home_page",
+          region: "germany",
+          available_cities: cities.length.toString()
+        }}
+      />
     </>
   );
 }

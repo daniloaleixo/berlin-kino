@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { GetStaticProps } from 'next';
 import { cityConfigs } from '../../src/utils/cityConfig';
 import CinemaWebsite from '../../src/cinema-website';
+import Analytics from '../../src/components/Analytics';
 
 interface FrankfurtPageProps {
   cityConfig: typeof cityConfigs.frankfurt;
@@ -41,6 +42,18 @@ export default function FrankfurtPage({ cityConfig }: FrankfurtPageProps) {
       </Head>
       
       <CinemaWebsite cityConfig={cityConfig} />
+      
+      {/* Frankfurt-specific analytics */}
+      <Analytics 
+        pageTitle="Frankfurt Cinema Guide"
+        pagePath="/frankfurt"
+        cityName="frankfurt"
+        customDimensions={{
+          city: "frankfurt",
+          region: "germany",
+          page_type: "city_page"
+        }}
+      />
     </>
   );
 }
