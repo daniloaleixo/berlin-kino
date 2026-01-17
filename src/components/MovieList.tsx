@@ -22,9 +22,9 @@ export const MovieList: React.FC<IProps> = ({ movies, cityName }: IProps) => {
   };
 
   return (
-    <div className="pb-16">
+    <ul className="pb-16 list-none" aria-label="Movie listings">
       {movies.map((movie) => (
-        <div key={movie.id}>
+        <li key={movie.id}>
           <MovieCard 
             movie={movie} 
             isExpanded={expandedMovieId === movie.id}
@@ -34,8 +34,8 @@ export const MovieList: React.FC<IProps> = ({ movies, cityName }: IProps) => {
           {expandedMovieId === movie.id && (
             <MovieCardExpanded movie={movie} />
           )}
-        </div>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 };

@@ -33,8 +33,8 @@ export const cityConfigs: Record<string, CityConfig> = {
       de: 'Kino Guide Berlin',
     },
     seo: {
-      title: "Berlin Cinema Guide – Schedules & Listings for All Cinemas",
-      description: "Discover all cinema schedules in Berlin. Browse movie times, locations, and special screenings across Berlin's best cinemas in one place.",
+      title: "Berlin Cinema Guide & Showtimes | Cinema Guide",
+      description: "Discover all cinema schedules and showtimes in Berlin. Browse movie times, locations, and special screenings across Berlin's best cinemas in one place.",
       url: "https://berlinkino.aereozen.com",
       structuredData: {
         "@context": "https://schema.org",
@@ -65,8 +65,8 @@ export const cityConfigs: Record<string, CityConfig> = {
       de: 'Kino Guide Frankfurt',
     },
     seo: {
-      title: "Frankfurt Cinema Guide – Schedules & Listings for All Cinemas",
-      description: "Discover all cinema schedules in Frankfurt. Browse movie times, locations, and special screenings across Frankfurt's best cinemas in one place.",
+      title: "Frankfurt Cinema Guide & Showtimes | Cinema Guide",
+      description: "Discover all cinema schedules and showtimes in Frankfurt. Browse movie times, locations, and special screenings across Frankfurt's best cinemas in one place.",
       url: "https://frankfurt-kino.aereozen.com",
       structuredData: {
         "@context": "https://schema.org",
@@ -97,8 +97,8 @@ export const cityConfigs: Record<string, CityConfig> = {
       de: 'Kino Guide München',
     },
     seo: {
-      title: "Munich Cinema Guide – Schedules & Listings for All Cinemas",
-      description: "Discover all cinema schedules in Munich. Browse movie times, locations, and special screenings across Munich's best cinemas in one place.",
+      title: "Munich Cinema Guide & Showtimes | Cinema Guide",
+      description: "Discover all cinema schedules and showtimes in Munich. Browse movie times, locations, and special screenings across Munich's best cinemas in one place.",
       url: "https://munich-kino.aereozen.com",
       structuredData: {
         "@context": "https://schema.org",

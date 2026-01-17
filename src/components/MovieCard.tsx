@@ -50,7 +50,7 @@ export const MovieCard = ({ movie, isExpanded, onClick, cityName }: MovieCardPro
   };
 
   return (
-    <div className="bg-gray-900 border border-gray-700 rounded-lg p-4 lg:p-6 mb-0 hover:border-red-400 transition-all duration-300">
+    <article className="bg-gray-900 border border-gray-700 rounded-lg p-4 lg:p-6 mb-0 hover:border-red-400 transition-all duration-300">
       <div
         className="flex items-start lg:items-center cursor-pointer"
         onClick={handleMovieClick}
@@ -100,6 +100,6 @@ export const MovieCard = ({ movie, isExpanded, onClick, cityName }: MovieCardPro
           }
         </div>
       </div>
-    </div>
+    </article>
   )
 }

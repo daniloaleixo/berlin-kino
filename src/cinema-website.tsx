@@ -1,6 +1,7 @@
 import { Filter } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next'; // Import useTranslation hook
+import { CityIntro } from './components/CityIntro';
 import { DateHeader } from './components/DateHeader';
 import { DatePicker } from './components/DatePicker';
 import { InformationPage } from './components/InformationPage';
@@ -257,11 +258,14 @@ function CinemaWebsite({ cityConfig }: CinemaWebsiteProps) {
       {/* Main Title Section */}
       <MainTitle city={cityConfig?.name} />
 
+      {/* City Introduction Section */}
+      <CityIntro cityConfig={cityConfig} />
+
       {/* Navigation Tabs and Filters */}
       <div className="w-full px-4 max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8 gap-4">
-          {/* Tabs */}
-          <div className="flex flex-wrap gap-2 w-full lg:w-auto">
+          {/* Date Navigation Tabs */}
+          <nav aria-label="Date selection" className="flex flex-wrap gap-2 w-full lg:w-auto">
             {tabs.map((tab, index) => (
               <button
                 key={tab}
@@ -270,11 +274,12 @@ function CinemaWebsite({ cityConfig }: CinemaWebsiteProps) {
                   ? 'bg-red-400 text-black'
                   : 'bg-transparent text-white hover:bg-red-400 hover:text-black'
                   }`}
+                aria-current={selectedTab === index ? 'page' : undefined}
               >
                 {tab}
               </button>
             ))}
-          </div>
+          </nav>
 
           {/* Language Toggle and Neighborhood Filter */}
           <div className="flex items-center gap-2 lg:gap-4 w-full lg:w-auto">
